@@ -26,7 +26,7 @@ class ecdf:
         self.I = ( self.x.reshape(1,-1) <= self.grid.reshape(-1,1) ).astype(int)
         self.F_hat = self.I.mean(axis=1)
 
-    def plot(self, fill = True ):
+    def plot(self, fill = False ):
         """
         Plot the empirical cumulative distribution function.
         """        
@@ -37,7 +37,7 @@ class ecdf:
         plt.ylabel('Proportion')
         if self.name is not None:
             plt.xlabel(self.name)
-        plt.show()
+        #plt.show()
 
     def quantile(self, u_value):
         """
@@ -160,7 +160,7 @@ class kde:
             K = np.exp( -(diff/self.h)** 2/2 )/np.sqrt( 2*np.pi )
             self.f_hat = np.mean(K,axis=1)/self.h
 
-    def plot(self, fill = True):
+    def plot(self, fill = False):
         """
         Plot the fitted kernel density estimate.
 
@@ -182,7 +182,7 @@ class kde:
             plt.ylabel('Density')                
             if self.name is not None:
                         plt.xlabel(self.name)
-            plt.show()
+            #plt.show()
 
     def __repr__(self):
         return f"kde(kernel_type='{self.kernel_type}', h={self.h})"
